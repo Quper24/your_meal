@@ -1,7 +1,14 @@
-const modalProduct = document.querySelector('.modal_product');
-const catalogList = document.querySelector('.catalog__list');
+import {
+  modalProduct,
+  catalogList,
+} from './elements.js'
+import { openModal } from './openModal.js';
 
-const product = {
+import { createCardProduct } from './createCardProduct.js';
+import { renderListProduct } from './renderListProduct.js';
+import { navigationListController } from './navigationListController.js';
+
+const burgerMax = {
   title: 'Бургер Макс',
   price: 10000,
   weight: 5000,
@@ -17,42 +24,13 @@ const product = {
   ]
 };
 
-const modalProductTitle = document.querySelector('.modal-product__title');
-const modalProductImage = document.querySelector('.modal-product__image');
-const modalProductDescription = document.querySelector('.modal-product__description');
-const ingredientsList = document.querySelector('.ingredients__list');
-const ingredientsCalories = document.querySelector('.ingredients__calories');
-const modalProductPriceCount = document.querySelector('.modal-product__price-count');
-
-
-modalProductTitle.textContent = product.title;
-modalProductImage.src = product.image;
-
-ingredientsList.textContent = '';
-
-const ingredientsListItems = product.ingredients.map((item) => {
-  const li = document.createElement('li');
-  li.classList.add('ingredients__item');
-  li.textContent = item;
-  return li
-});
-
-ingredientsList.append(...ingredientsListItems)
-
-/* 
-    !hw
-    modalProductDescription
-    ingredientsCalories
-    modalProductPriceCount
-*/
-
 
 catalogList.addEventListener('click', (event) => {
   const target = event.target;
 
   if (target.closest('.product__detail')
     || target.closest('.product__image')) {
-    modalProduct.classList.add('modal_open');
+      openModal(burgerMax)
   }
 });
 
@@ -64,4 +42,11 @@ modalProduct.addEventListener('click', (event) => {
     modalProduct.classList.remove('modal_open');
   }
   
-})
+});
+
+const init = () => {
+  renderListProduct();
+  navigationListController();
+};
+
+init();
