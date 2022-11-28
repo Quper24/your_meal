@@ -1,6 +1,6 @@
-import { catalogList, navigationList, navigationListItems } from './elements.js';
+import { catalogTitle, navigationList, navigationListItems } from './elements.js';
 
-export const navigationListController = () => {
+export const navigationListController = (cb) => {
   navigationList.addEventListener('click', e => {
     const categoryItem = e.target.closest('.navigation__button');
 
@@ -9,7 +9,8 @@ export const navigationListController = () => {
     navigationListItems.forEach((item) => {
       if (item === categoryItem) {
         item.classList.add('navigation__button_active');
-        // !hw catalog__title
+        catalogTitle.textContent = item.textContent;
+        cb(item.dataset.category);
       } else {
         item.classList.remove('navigation__button_active');
       }

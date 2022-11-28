@@ -3,26 +3,9 @@ import {
   catalogList,
 } from './elements.js'
 import { openModal } from './openModal.js';
-
-import { createCardProduct } from './createCardProduct.js';
 import { renderListProduct } from './renderListProduct.js';
 import { navigationListController } from './navigationListController.js';
-
-const burgerMax = {
-  title: 'Бургер Макс',
-  price: 10000,
-  weight: 5000,
-  calories: 15000,
-  description: 'Огромный бургер, съешь сам или поделись с компанией',
-  image: 'img/megaburger.jpg',
-  ingredients: [
-    'Пшеничная булочка',
-    'Мега котлета из говядины',
-    'Много сыра',
-    'Листья салата',
-    'Чипотл'
-  ]
-};
+import { cartInit } from './cart.js';
 
 
 catalogList.addEventListener('click', (event) => {
@@ -30,7 +13,8 @@ catalogList.addEventListener('click', (event) => {
 
   if (target.closest('.product__detail')
     || target.closest('.product__image')) {
-      openModal(burgerMax)
+      const id = target.closest('.product').dataset.idProduct;
+      openModal(id)
   }
 });
 
@@ -46,7 +30,8 @@ modalProduct.addEventListener('click', (event) => {
 
 const init = () => {
   renderListProduct();
-  navigationListController();
+  navigationListController(renderListProduct);
+  cartInit();
 };
 
 init();
