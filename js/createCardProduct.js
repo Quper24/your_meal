@@ -20,5 +20,5 @@ export const createCardProduct = (product) => {
     </article>
   `;
 
-  return li
-}
+  return li;
+};

@@ -1,7 +1,11 @@
-import { catalogTitle, navigationList, navigationListItems } from './elements.js';
+import {
+  catalogTitle,
+  navigationList,
+  navigationListItems,
+} from './elements.js';
 
 export const navigationListController = (cb) => {
-  navigationList.addEventListener('click', e => {
+  navigationList.addEventListener('click', (e) => {
     const categoryItem = e.target.closest('.navigation__button');
 
     if (!categoryItem) return;
@@ -14,6 +18,6 @@ export const navigationListController = (cb) => {
       } else {
         item.classList.remove('navigation__button_active');
       }
-    })
-  })
+    });
+  });
 };
