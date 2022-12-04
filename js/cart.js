@@ -1,4 +1,4 @@
-import { catalogList, countAmount, modalDelivery, modalProductBtn, order, orderCount, orderList, orderSubmit, orderTotalAmount, orderWrapTitle } from './elements.js';
+import { catalogList,  modalDelivery, order, orderCount, orderList, orderSubmit, orderTotalAmount, orderWrapTitle } from './elements.js';
 import { getData } from './getData.js';
 import { API_URL, PREFIX_PRODUCT } from './const.js';
 import { orderController } from './orderController.js';
@@ -69,7 +69,7 @@ const updateCartList = (cartList) => {
   renderCartList();
 };
 
-const addCart = (id, count = 1) => {
+export const addCart = (id, count = 1) => {
   const cartList = getCart();
   const product = cartList.find((item) => item.id === id);
 
@@ -104,13 +104,6 @@ const cartController = () => {
     if (target.closest('.product__add')) {
       addCart(target.closest('.product').dataset.idProduct);
     }
-  });
-
-  modalProductBtn.addEventListener('click', () => {
-    addCart(
-      modalProductBtn.dataset.idProduct,
-      parseInt(countAmount.textContent),
-    )
   });
 
   orderList.addEventListener('click', ({target}) => {
