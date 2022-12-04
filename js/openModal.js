@@ -33,4 +33,18 @@ export const openModal = async (id) => {
   modalProductBtn.dataset.idProduct = product.id;
 
   modalProduct.classList.add('modal_open');
+
+  const countMinus = modalProduct.querySelector('.count__minus');
+  const countAmount = modalProduct.querySelector('.count__amount');
+  const countPlus = modalProduct.querySelector('.count__plus');
+  countAmount.textContent = '1';
+  
+  countMinus.addEventListener('click', () => {
+    if (countAmount.textContent === '1') return;
+    countAmount.textContent = +countAmount.textContent - 1;
+  });
+
+  countPlus.addEventListener('click', () => {
+    countAmount.textContent = +countAmount.textContent + 1;
+  });
 };
